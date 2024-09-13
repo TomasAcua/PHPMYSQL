@@ -37,7 +37,7 @@
             </div>
             <!-- Ejercicio 7 - Buscar Persona -->
             <div class="col-md-4 mb-3">
-                <a href="vista/BuscarPersona.html" class="btn btn-primary w-100 btn-animate">Ejercicio 7 - Buscar Persona</a>
+                <a href="vista/BuscarPersona.php" class="btn btn-primary w-100 btn-animate">Ejercicio 7 - Buscar Persona</a>
             </div>
         </div>
     </div>

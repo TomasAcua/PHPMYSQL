@@ -10,7 +10,7 @@
 <body>
     <div class="container mt-5">
         <h1>Registrar Nuevo Auto</h1>
-        <form id="nuevoAutoForm" action="accionNuevoAuto.php" method="POST">
+        <form id="nuevoAutoForm" action="accion/accionNuevoAuto.php" method="POST">
             <div class="mb-3">
                 <label for="patente" class="form-label">Patente</label>
                 <input type="text" class="form-control" id="patente" name="patente" placeholder="Ingrese la patente" required>

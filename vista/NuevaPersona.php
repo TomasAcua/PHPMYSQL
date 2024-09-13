@@ -10,7 +10,7 @@
 <body>
     <div class="container mt-5">
         <h1>Registrar Nueva Persona</h1>
-        <form id="nuevaPersonaForm" action="accionNuevaPersona.php" method="POST">
+        <form id="nuevaPersonaForm" action="accion/accionNuevaPersona.php" method="POST">
             <div class="mb-3">
                 <label for="dni" class="form-label">DNI</label>
                 <input type="text" class="form-control" id="dni" name="dni" placeholder="Ingrese el DNI" required>

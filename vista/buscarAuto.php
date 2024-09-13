@@ -10,7 +10,7 @@
 <body>
     <div class="container mt-5">
         <h1>Buscar Auto por Patente</h1>
-        <form action="accionBuscarAuto.php" method="GET">
+        <form action="accion/accionBuscarAuto.php" method="GET">
             <div class="mb-3">
                 <label for="patente" class="form-label">Patente del Auto</label>
                 <input type="text" class="form-control" id="patente" name="patente" placeholder="Ingrese la patente" required>

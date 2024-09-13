@@ -9,7 +9,7 @@
 <body>
     <div class="container mt-5">
         <h1>Cambiar Dueño de un Auto</h1>
-        <form action="accionCambioDuenio.php" method="POST">
+        <form action="accion/accionCambioDuenio.php" method="POST">
             <div class="mb-3">
                 <label for="patente" class="form-label">Patente del Auto</label>
                 <input type="text" class="form-control" id="patente" name="patente" placeholder="Ingrese la patente del auto" required>

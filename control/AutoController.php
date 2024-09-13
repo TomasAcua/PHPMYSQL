@@ -1,4 +1,5 @@
 <?php
+include_once '../modelo/db.php';
 class AutoController {
     private $db;
     private $auto;

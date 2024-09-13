@@ -36,4 +36,4 @@ if (isset($datos['patente']) && isset($datos['dni'])) {
     echo "<p>Por favor complete ambos campos.</p>";
 }
 ?>
-<a href="CambioDuenio.php" class="btn btn-primary mt-3">Volver al formulario</a>
+<a href="../cambioDuenio.php" class="btn btn-primary mt-3">Volver al formulario</a>

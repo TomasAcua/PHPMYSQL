@@ -20,7 +20,11 @@ class Persona {
             $stmt->bindParam(':Telefono', $datos['Telefono']);
             $stmt->bindParam(':Domicilio', $datos['Domicilio']);
 
-            return $stmt->execute();
+            if ($stmt->execute()) {
+                return ['success' => true];
+            } else {
+                return ['success' => false, 'message' => 'Error al insertar la persona en la base de datos.'];
+            }
         } catch (PDOException $e) {
             return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
         }

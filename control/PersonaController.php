@@ -1,5 +1,6 @@
 <?php
-include_once '../modelo/db.php';
+include_once __DIR__ . '/../modelo/db.php';
+include_once __DIR__ . '/../modelo/Persona.php';
 class PersonaController {
     private $db;
     private $persona;

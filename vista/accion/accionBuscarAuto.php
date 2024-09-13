@@ -54,7 +54,7 @@ if ($patente) {
                         <td><?php echo htmlspecialchars($persona['Nombre'] . " " . $persona['Apellido']); ?></td>
                     </tr>
                 </table>
-                <a href="buscarAuto.php" class="btn btn-primary mt-3">Volver a la búsqueda</a>
+                <a href="../buscarAuto.php" class="btn btn-primary mt-3">Volver a la búsqueda</a>
             </div>
         </body>
         </html>
@@ -62,10 +62,10 @@ if ($patente) {
     } else {
         // Si no se encuentra el auto
         echo "<p>No se encontró un auto con la patente " . htmlspecialchars($patente) . ".</p>";
-        echo "<a href='buscarAuto.php' class='btn btn-primary'>Volver a la búsqueda</a>";
+        echo "<a href='../buscarAuto.php' class='btn btn-primary'>Volver a la búsqueda</a>";
     }
 } else {
     echo "<p>Por favor ingrese una patente válida.</p>";
-    echo "<a href='buscarAuto.php' class='btn btn-primary'>Volver a la búsqueda</a>";
+    echo "<a href='../buscarAuto.php' class='btn btn-primary'>Volver a la búsqueda</a>";
 }
 ?>

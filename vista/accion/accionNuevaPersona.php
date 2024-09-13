@@ -1,6 +1,6 @@
 <?php
 include_once '../../control/PersonaController.php';
-include_once '../../control/utils.php';  // Incluir utils.php
+include_once '../../control/utils.php'; 
 
 $datos = darDatosSubmitted();
 
@@ -8,7 +8,7 @@ if (isset($datos['dni']) && isset($datos['nombre']) && isset($datos['apellido'])
     $personaController = new PersonaController();
 
     // Insertar persona a través del controlador
-    $resultado = $personaController->insertarPersona([
+    $resultado = $personaController->insertarPersona(datos: [
         'NroDni' => $datos['dni'],
         'Nombre' => $datos['nombre'],
         'Apellido' => $datos['apellido'],
@@ -25,4 +25,4 @@ if (isset($datos['dni']) && isset($datos['nombre']) && isset($datos['apellido'])
     echo "<p>Por favor, complete todos los campos.</p>";
 }
 ?>
-<a href="NuevaPersona.php" class="btn btn-primary mt-3">Volver al formulario</a>
+<a href="../NuevaPersona.php" class="btn btn-primary mt-3">Volver al formulario</a>

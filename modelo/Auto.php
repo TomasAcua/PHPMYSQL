@@ -19,7 +19,11 @@ class Auto {
             $stmt->bindParam(':Modelo', $datos['Modelo']);
             $stmt->bindParam(':DniDuenio', $datos['DniDuenio']);
 
-            return $stmt->execute();
+            if ($stmt->execute()) {
+                return ['success' => true];
+            } else {
+                return ['success' => false, 'message' => 'Error al insertar el auto en la base de datos.'];
+            }
         } catch (PDOException $e) {
             return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
         }

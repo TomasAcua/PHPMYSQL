@@ -1,5 +1,6 @@
 <?php
-include_once '../modelo/db.php';
+include_once __DIR__ . '/../modelo/db.php';
+include_once __DIR__ . '/../modelo/Auto.php';
 class AutoController {
     private $db;
     private $auto;

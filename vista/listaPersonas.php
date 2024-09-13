@@ -34,7 +34,7 @@ $resultadoPersonas = $personaController->obtenerPersonas();
                         <td><?php echo htmlspecialchars($persona['Nombre']); ?></td>
                         <td><?php echo htmlspecialchars($persona['Apellido']); ?></td>
                         <td>
-                            <a href="autosPersona.php?dni=<?php echo htmlspecialchars($persona['NroDni']); ?>" class="btn btn-info">Ver Autos</a>
+                            <a href="accion/autosPersona.php?dni=<?php echo htmlspecialchars($persona['NroDni']); ?>" class="btn btn-info">Ver Autos</a>
                         </td>
                     </tr>
                 <?php }

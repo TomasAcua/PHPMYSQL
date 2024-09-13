@@ -61,7 +61,7 @@ if ($dni) {
         <?php } else { ?>
             <p>No se encontraron autos para esta persona.</p>
         <?php } ?>
-        <a href="listaPersonas.php" class="btn btn-primary">Volver a la lista de personas</a>
+        <a href="../listaPersonas.php" class="btn btn-primary">Volver a la lista de personas</a>
     </div>
 </body>
 </html>

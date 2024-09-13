@@ -1,7 +1,7 @@
 <?php
-include_once '../../control/AutoController.php';
-include_once  '../../control/PersonaController.php';
-include_once  '../../control/utils.php';
+include_once __DIR__ . '/../control/AutoController.php';
+include_once __DIR__ . '/../control/PersonaController.php';
+include_once __DIR__ . '/../control/utils.php';
 
 // Instancia de los controladores
 $autoController = new AutoController();

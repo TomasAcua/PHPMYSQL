@@ -8,7 +8,7 @@ if (isset($datos['patente']) && isset($datos['marca']) && isset($datos['modelo']
     $autoController = new AutoController();
 
     // Insertar auto a través del controlador
-    $resultado = $autoController->insertarAuto([
+    $resultado = $autoController->insertarAuto(datos: [
         'Patente' => $datos['patente'],
         'Marca' => $datos['marca'],
         'Modelo' => $datos['modelo'],
@@ -24,4 +24,4 @@ if (isset($datos['patente']) && isset($datos['marca']) && isset($datos['modelo']
     echo "<p>Por favor, complete todos los campos.</p>";
 }
 ?>
-<a href="NuevoAuto.php" class="btn btn-primary mt-3">Volver al formulario</a>
+<a href="../NuevoAuto.php" class="btn btn-primary mt-3">Volver al formulario</a>

@@ -30,9 +30,10 @@
             <button type="submit" class="btn btn-primary">Registrar Auto</button>
         </form>
     </div>
+    <a href="../menu.php" class="btn btn-secondary mt-3">Volver al Menú</a>
 
     <script>
-        // Validación básica de JavaScript si es necesario
+     
         $('#nuevoAutoForm').on('submit', function(e) {
             var dni = $('#dniDuenio').val();
             if (dni.length < 7 || dni.length > 10) {

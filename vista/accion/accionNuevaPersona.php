@@ -1,36 +1,28 @@
 <?php
 include_once '../../control/PersonaController.php';
+include_once '../../control/utils.php';  // Incluir utils.php
 
-try {
-    if (isset($_POST['dni']) && isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['telefono']) && isset($_POST['domicilio'])) {
-        $dni = $_POST['dni'];
-        $nombre = $_POST['nombre'];
-        $apellido = $_POST['apellido'];
-        $telefono = $_POST['telefono'];
-        $domicilio = $_POST['domicilio'];
+$datos = darDatosSubmitted();
 
-        // Instanciar el controlador de persona
-        $personaController = new PersonaController();
+if (isset($datos['dni']) && isset($datos['nombre']) && isset($datos['apellido']) && isset($datos['telefono']) && isset($datos['domicilio'])) {
+    $personaController = new PersonaController();
 
-        // Insertar nueva persona
-        $resultado = $personaController->insertarPersona([
-            'NroDni' => $dni,
-            'Nombre' => $nombre,
-            'Apellido' => $apellido,
-            'Telefono' => $telefono,
-            'Domicilio' => $domicilio
-        ]);
+    // Insertar persona a través del controlador
+    $resultado = $personaController->insertarPersona([
+        'NroDni' => $datos['dni'],
+        'Nombre' => $datos['nombre'],
+        'Apellido' => $datos['apellido'],
+        'Telefono' => $datos['telefono'],
+        'Domicilio' => $datos['domicilio']
+    ]);
 
-        if ($resultado) {
-            echo "<p>La persona ha sido registrada exitosamente.</p>";
-        } else {
-            echo "<p>Hubo un error al registrar la persona.</p>";
-        }
+    if ($resultado['success']) {
+        echo "<p>La persona ha sido registrada exitosamente.</p>";
     } else {
-        echo "<p>Por favor complete todos los campos del formulario.</p>";
+        echo "<p>Hubo un error: " . $resultado['message'] . "</p>";
     }
-} catch (Exception $e) {
-    echo "Error procesando el formulario: " . $e->getMessage();
+} else {
+    echo "<p>Por favor, complete todos los campos.</p>";
 }
 ?>
 <a href="NuevaPersona.php" class="btn btn-primary mt-3">Volver al formulario</a>

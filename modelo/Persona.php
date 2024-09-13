@@ -3,82 +3,73 @@ class Persona {
     private $conn;
     public $table_name = "persona";
 
-    public $NroDni;
-    public $Apellido;
-    public $Nombre;
-    public $fechaNac;
-    public $Telefono;
-    public $Domicilio;
-
-    // Constructor para inicializar la conexión a la base de datos
     public function __construct($db) {
         $this->conn = $db;
     }
 
-    // Método para insertar una nueva persona
-    public function insertar() {
-        $query = "INSERT INTO " . $this->table_name . " 
-                  SET NroDni=:NroDni, Apellido=:Apellido, Nombre=:Nombre, fechaNac=:fechaNac, Telefono=:Telefono, Domicilio=:Domicilio";
+    // Método para insertar una persona
+    public function insertar($datos) {
+        try {
+            $query = "INSERT INTO " . $this->table_name . " (NroDni, Nombre, Apellido, Telefono, Domicilio) 
+                      VALUES (:NroDni, :Nombre, :Apellido, :Telefono, :Domicilio)";
+    
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':NroDni', $datos['NroDni']);
+            $stmt->bindParam(':Nombre', $datos['Nombre']);
+            $stmt->bindParam(':Apellido', $datos['Apellido']);
+            $stmt->bindParam(':Telefono', $datos['Telefono']);
+            $stmt->bindParam(':Domicilio', $datos['Domicilio']);
 
-        $stmt = $this->conn->prepare($query);
-
-        // Vincular los parámetros
-        $stmt->bindParam(":NroDni", $this->NroDni);
-        $stmt->bindParam(":Apellido", $this->Apellido);
-        $stmt->bindParam(":Nombre", $this->Nombre);
-        $stmt->bindParam(":fechaNac", $this->fechaNac);
-        $stmt->bindParam(":Telefono", $this->Telefono);
-        $stmt->bindParam(":Domicilio", $this->Domicilio);
-
-        // Ejecutar la consulta
-        if ($stmt->execute()) {
-            return true;
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
         }
-        return false;
     }
 
-    // Método para obtener todas las personas
-    public function obtenerPersonas() {
-        $query = "SELECT * FROM " . $this->table_name;
-
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute();
-
-        return $stmt;
+    public function obtenerPorDni($dni) {
+        try {
+            $query = "SELECT * FROM " . $this->table_name . " WHERE NroDni = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(1, $dni);
+            $stmt->execute();
+            $persona = $stmt->fetch(PDO::FETCH_ASSOC);
+            return ['success' => true, 'data' => $persona];
+        } catch (PDOException $e) {
+            return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
+        }
     }
+    
 
     // Método para actualizar una persona
-    public function actualizar() {
-        $query = "UPDATE " . $this->table_name . " 
-                  SET Apellido=:Apellido, Nombre=:Nombre, fechaNac=:fechaNac, Telefono=:Telefono, Domicilio=:Domicilio 
-                  WHERE NroDni=:NroDni";
+    public function actualizar($datos) {
+        try {
+            $query = "UPDATE " . $this->table_name . " 
+                      SET Nombre=:Nombre, Apellido=:Apellido, Telefono=:Telefono, Domicilio=:Domicilio 
+                      WHERE NroDni=:NroDni";
 
-        $stmt = $this->conn->prepare($query);
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':NroDni', $datos['NroDni']);
+            $stmt->bindParam(':Nombre', $datos['Nombre']);
+            $stmt->bindParam(':Apellido', $datos['Apellido']);
+            $stmt->bindParam(':Telefono', $datos['Telefono']);
+            $stmt->bindParam(':Domicilio', $datos['Domicilio']);
 
-        $stmt->bindParam(":NroDni", $this->NroDni);
-        $stmt->bindParam(":Apellido", $this->Apellido);
-        $stmt->bindParam(":Nombre", $this->Nombre);
-        $stmt->bindParam(":fechaNac", $this->fechaNac);
-        $stmt->bindParam(":Telefono", $this->Telefono);
-        $stmt->bindParam(":Domicilio", $this->Domicilio);
-
-        if ($stmt->execute()) {
-            return true;
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
         }
-        return false;
     }
-
-    // Método para eliminar una persona
-    public function eliminar() {
-        $query = "DELETE FROM " . $this->table_name . " WHERE NroDni=:NroDni";
-
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(":NroDni", $this->NroDni);
-
-        if ($stmt->execute()) {
-            return true;
+    public function obtenerTodas() {
+        try {
+            $query = "SELECT * FROM " . $this->table_name;
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            $personas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return ['success' => true, 'data' => $personas];
+        } catch (PDOException $e) {
+            return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
         }
-        return false;
     }
+    
 }
 ?>

@@ -1,14 +1,18 @@
 <?php
 include_once '../../control/PersonaController.php';
+include_once '../../control/utils.php';
 
-if (isset($_GET['dni']) && !empty($_GET['dni'])) {
-    $dni = $_GET['dni'];
+$datos = darDatosSubmitted();
+
+if (isset($datos['dni']) && !empty($datos['dni'])) {
+    $dni = $datos['dni'];
 
     // Instanciar el controlador de persona
     $personaController = new PersonaController();
-    $persona = $personaController->obtenerPersonaPorDni($dni);
+    $resultadoPersona = $personaController->obtenerPersonaPorDni($dni);
 
-    if ($persona) {
+    if ($resultadoPersona['success'] && $resultadoPersona['data']) {
+        $persona = $resultadoPersona['data'];
         ?>
         <!DOCTYPE html>
         <html lang="es">
@@ -22,33 +26,32 @@ if (isset($_GET['dni']) && !empty($_GET['dni'])) {
             <div class="container mt-5">
                 <h1>Actualizar Datos de Persona</h1>
                 <form action="ActualizarDatosPersona.php" method="POST">
-                    <input type="hidden" name="dni" value="<?php echo $persona['NroDni']; ?>">
+                    <input type="hidden" name="dni" value="<?php echo htmlspecialchars($persona['NroDni']); ?>">
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $persona['Nombre']; ?>" required>
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo htmlspecialchars($persona['Nombre']); ?>" required>
                     </div>
                     <div class="mb-3">
                         <label for="apellido" class="form-label">Apellido</label>
-                        <input type="text" class="form-control" id="apellido" name="apellido" value="<?php echo $persona['Apellido']; ?>" required>
+                        <input type="text" class="form-control" id="apellido" name="apellido" value="<?php echo htmlspecialchars($persona['Apellido']); ?>" required>
                     </div>
                     <div class="mb-3">
                         <label for="telefono" class="form-label">Teléfono</label>
-                        <input type="text" class="form-control" id="telefono" name="telefono" value="<?php echo $persona['Telefono']; ?>" required>
+                        <input type="text" class="form-control" id="telefono" name="telefono" value="<?php echo htmlspecialchars($persona['Telefono']); ?>" required>
                     </div>
                     <div class="mb-3">
                         <label for="domicilio" class="form-label">Domicilio</label>
-                        <input type="text" class="form-control" id="domicilio" name="domicilio" value="<?php echo $persona['Domicilio']; ?>" required>
+                        <input type="text" class="form-control" id="domicilio" name="domicilio" value="<?php echo htmlspecialchars($persona['Domicilio']); ?>" required>
                     </div>
                     <button type="submit" class="btn btn-success">Actualizar Datos</button>
                 </form>
             </div>
             <a href="../../menu.php" class="btn btn-secondary mt-3">Volver al Menú</a>
-
         </body>
         </html>
         <?php
     } else {
-        echo "<p>No se encontró una persona con el DNI $dni.</p>";
+        echo "<p>No se encontró una persona con el DNI " . htmlspecialchars($dni) . ".</p>";
         echo "<a href='BuscarPersona.html' class='btn btn-primary'>Volver a buscar</a>";
     }
 } else {

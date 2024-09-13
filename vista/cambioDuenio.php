@@ -21,7 +21,6 @@
             <button type="submit" class="btn btn-primary">Cambiar Dueño</button>
         </form>
     </div>
-    <a href="../../menu.php" class="btn btn-secondary mt-3">Volver al Menú</a>
-
+    <a href="../menu.php" class="btn btn-secondary mt-3">Volver al Menú</a>
 </body>
 </html>

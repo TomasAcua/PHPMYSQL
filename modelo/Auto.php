@@ -3,73 +3,79 @@ class Auto {
     private $conn;
     public $table_name = "auto";
 
-    public $Patente;
-    public $Marca;
-    public $Modelo;
-    public $DniDuenio;
-
     public function __construct($db) {
         $this->conn = $db;
     }
 
     // Método para insertar un auto
-    public function insertar() {
-        $query = "INSERT INTO " . $this->table_name . " 
-                  SET Patente=:Patente, Marca=:Marca, Modelo=:Modelo, DniDuenio=:DniDuenio";
+    public function insertar($datos) {
+        try {
+            $query = "INSERT INTO " . $this->table_name . " (Patente, Marca, Modelo, DniDuenio) 
+                      VALUES (:Patente, :Marca, :Modelo, :DniDuenio)";
+    
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':Patente', $datos['Patente']);
+            $stmt->bindParam(':Marca', $datos['Marca']);
+            $stmt->bindParam(':Modelo', $datos['Modelo']);
+            $stmt->bindParam(':DniDuenio', $datos['DniDuenio']);
 
-        $stmt = $this->conn->prepare($query);
-
-        $stmt->bindParam(":Patente", $this->Patente);
-        $stmt->bindParam(":Marca", $this->Marca);
-        $stmt->bindParam(":Modelo", $this->Modelo);
-        $stmt->bindParam(":DniDuenio", $this->DniDuenio);
-
-        if ($stmt->execute()) {
-            return true;
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
         }
-        return false;
     }
 
-    // Método para obtener todos los autos
-    public function obtenerAutos() {
-        $query = "SELECT * FROM " . $this->table_name;
-
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute();
-
-        return $stmt;
-    }
-
-    // Método para actualizar un auto
-    public function actualizar() {
-        $query = "UPDATE " . $this->table_name . " 
-                  SET Marca=:Marca, Modelo=:Modelo, DniDuenio=:DniDuenio 
-                  WHERE Patente=:Patente";
-
-        $stmt = $this->conn->prepare($query);
-
-        $stmt->bindParam(":Patente", $this->Patente);
-        $stmt->bindParam(":Marca", $this->Marca);
-        $stmt->bindParam(":Modelo", $this->Modelo);
-        $stmt->bindParam(":DniDuenio", $this->DniDuenio);
-
-        if ($stmt->execute()) {
-            return true;
+    public function obtenerPorPatente($patente) {
+        try {
+            $query = "SELECT * FROM " . $this->table_name . " WHERE Patente = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(1, $patente);
+            $stmt->execute();
+            $auto = $stmt->fetch(PDO::FETCH_ASSOC);
+            return ['success' => true, 'data' => $auto];
+        } catch (PDOException $e) {
+            return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
         }
-        return false;
     }
-
-    // Método para eliminar un auto
-    public function eliminar() {
-        $query = "DELETE FROM " . $this->table_name . " WHERE Patente=:Patente";
-
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(":Patente", $this->Patente);
-
-        if ($stmt->execute()) {
-            return true;
+    
+    public function obtenerTodos() {
+        try {
+            $query = "SELECT * FROM " . $this->table_name;
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            $autos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return ['success' => true, 'data' => $autos];
+        } catch (PDOException $e) {
+            return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
         }
-        return false;
     }
+    public function obtenerPorDni($dniDuenio) {
+        try {
+            $query = "SELECT * FROM " . $this->table_name . " WHERE DniDuenio = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(1, $dniDuenio);
+            $stmt->execute();
+            $autos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return ['success' => true, 'data' => $autos];
+        } catch (PDOException $e) {
+            return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
+        }
+    }
+    public function actualizarDueño($patente, $nuevoDni) {
+        try {
+            $query = "UPDATE " . $this->table_name . " SET DniDuenio = ? WHERE Patente = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(1, $nuevoDni);
+            $stmt->bindParam(2, $patente);
+    
+            return ['success' => $stmt->execute()];
+        } catch (PDOException $e) {
+            return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
+        }
+    }
+    
+    
+    
 }
+
 ?>

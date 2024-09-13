@@ -34,9 +34,10 @@
             <button type="submit" class="btn btn-primary">Registrar Persona</button>
         </form>
     </div>
+    <a href="../menu.php" class="btn btn-secondary mt-3">Volver al Menú</a>
 
     <script>
-        // Validaciones de JavaScript si es necesario
+        
         $('#nuevaPersonaForm').on('submit', function(e) {
             var dni = $('#dni').val();
             if (dni.length < 7 || dni.length > 10) {

@@ -2,19 +2,22 @@
 include_once '../../control/AutoController.php';
 include_once '../../control/PersonaController.php';
 
-if (isset($_GET['dni']) && !empty($_GET['dni'])) {
-    $dni = $_GET['dni'];
+// Verificar si se proporcionó un DNI válido
+$dni = $_GET['dni'] ?? null;
 
+if ($dni) {
     // Instanciar los controladores
     $autoController = new AutoController();
     $personaController = new PersonaController();
 
     // Obtener la persona por DNI
-    $persona = $personaController->obtenerPersonaPorDni($dni);
+    $resultadoPersona = $personaController->obtenerPersonaPorDni($dni);
 
-    if ($persona) {
+    if ($resultadoPersona['success'] && $resultadoPersona['data']) {
+        $persona = $resultadoPersona['data'];
+
         // Obtener autos de la persona
-        $autos = $autoController->obtenerAutosPorDni($dni);
+        $resultadoAutos = $autoController->obtenerAutosPorDni($dni);
     } else {
         echo "Persona no encontrada.";
         exit;
@@ -30,13 +33,13 @@ if (isset($_GET['dni']) && !empty($_GET['dni'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autos de <?php echo $persona['Nombre'] . " " . $persona['Apellido']; ?></title>
+    <title>Autos de <?php echo htmlspecialchars($persona['Nombre'] . " " . $persona['Apellido']); ?></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container mt-5">
-        <h1>Autos de <?php echo $persona['Nombre'] . " " . $persona['Apellido']; ?></h1>
-        <?php if (!empty($autos)) { ?>
+        <h1>Autos de <?php echo htmlspecialchars($persona['Nombre'] . " " . $persona['Apellido']); ?></h1>
+        <?php if ($resultadoAutos['success'] && !empty($resultadoAutos['data'])) { ?>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -46,11 +49,11 @@ if (isset($_GET['dni']) && !empty($_GET['dni'])) {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($autos as $auto) { ?>
+                    <?php foreach ($resultadoAutos['data'] as $auto) { ?>
                     <tr>
-                        <td><?php echo $auto['Patente']; ?></td>
-                        <td><?php echo $auto['Marca']; ?></td>
-                        <td><?php echo $auto['Modelo']; ?></td>
+                        <td><?php echo htmlspecialchars($auto['Patente']); ?></td>
+                        <td><?php echo htmlspecialchars($auto['Marca']); ?></td>
+                        <td><?php echo htmlspecialchars($auto['Modelo']); ?></td>
                     </tr>
                     <?php } ?>
                 </tbody>

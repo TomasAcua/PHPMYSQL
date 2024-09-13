@@ -10,20 +10,33 @@
     <div class="container mt-5">
         <h1 class="text-center mb-4">Menú Principal</h1>
         <div class="row justify-content-center">
+            <!-- Ejercicio 7 - Buscar Persona -->
             <div class="col-md-4 mb-3">
-                <a href="vista/accion/buscarPersona.html" class="btn btn-primary w-100">Ejercicio 7 - Buscar Persona</a>
+                <a href="vista/BuscarPersona.html" class="btn btn-primary w-100">Ejercicio 7 - Buscar Persona</a>
             </div>
+            <!-- Ejercicio 5 - Lista de Personas -->
             <div class="col-md-4 mb-3">
-                <a href="vista/accion/listaPersonas.php" class="btn btn-primary w-100">Ejercicio 5 - Lista de Personas</a>
+                <a href="vista/listaPersonas.php" class="btn btn-primary w-100">Ejercicio 5 - Lista de Personas</a>
             </div>
+            <!-- Ejercicio 6 - Cambio de Dueño -->
             <div class="col-md-4 mb-3">
-                <a href="vista/accion/cambioDuenio.php" class="btn btn-primary w-100">Ejercicio 6 - Cambio de Dueño</a>
+                <a href="vista/CambioDuenio.php" class="btn btn-primary w-100">Ejercicio 6 - Cambio de Dueño</a>
             </div>
+            <!-- Ejercicio 4 - Buscar Auto -->
             <div class="col-md-4 mb-3">
-                <a href="vista/accion/buscarAuto.php" class="btn btn-primary w-100">Ejercicio 4 - Buscar Auto</a>
+                <a href="vista/BuscarAuto.php" class="btn btn-primary w-100">Ejercicio 4 - Buscar Auto</a>
             </div>
+            <!-- Ejercicio 3 - Ver Autos -->
             <div class="col-md-4 mb-3">
-                <a href="vista/accion/verAuto.php" class="btn btn-primary w-100">Ejercicio 3 - Ver Autos</a>
+                <a href="vista/verAuto.php" class="btn btn-primary w-100">Ejercicio 3 - Ver Autos</a>
+            </div>
+            <!-- Agregar Persona -->
+            <div class="col-md-4 mb-3">
+                <a href="vista/NuevaPersona.php" class="btn btn-success w-100">Agregar Persona</a>
+            </div>
+            <!-- Agregar Auto -->
+            <div class="col-md-4 mb-3">
+                <a href="vista/NuevoAuto.php" class="btn btn-success w-100">Agregar Auto</a>
             </div>
         </div>
     </div>

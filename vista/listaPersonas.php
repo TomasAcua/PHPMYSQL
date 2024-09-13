@@ -1,9 +1,9 @@
 <?php
-include_once '../../control/PersonaController.php';
+include_once '../control/PersonaController.php';
 
 // Instanciar el controlador de persona
 $personaController = new PersonaController();
-$personas = $personaController->obtenerPersonas();
+$resultadoPersonas = $personaController->obtenerPersonas();
 
 ?>
 <!DOCTYPE html>
@@ -27,14 +27,14 @@ $personas = $personaController->obtenerPersonas();
                 </tr>
             </thead>
             <tbody>
-                <?php if (!empty($personas)) {
-                    foreach ($personas as $persona) { ?>
+                <?php if ($resultadoPersonas['success'] && !empty($resultadoPersonas['data'])) {
+                    foreach ($resultadoPersonas['data'] as $persona) { ?>
                     <tr>
-                        <td><?php echo $persona['NroDni']; ?></td>
-                        <td><?php echo $persona['Nombre']; ?></td>
-                        <td><?php echo $persona['Apellido']; ?></td>
+                        <td><?php echo htmlspecialchars($persona['NroDni']); ?></td>
+                        <td><?php echo htmlspecialchars($persona['Nombre']); ?></td>
+                        <td><?php echo htmlspecialchars($persona['Apellido']); ?></td>
                         <td>
-                            <a href="autosPersona.php?dni=<?php echo $persona['NroDni']; ?>" class="btn btn-info">Ver Autos</a>
+                            <a href="autosPersona.php?dni=<?php echo htmlspecialchars($persona['NroDni']); ?>" class="btn btn-info">Ver Autos</a>
                         </td>
                     </tr>
                 <?php }
@@ -46,7 +46,7 @@ $personas = $personaController->obtenerPersonas();
             </tbody>
         </table>
     </div>
-    <a href="../../menu.php" class="btn btn-secondary mt-3">Volver al Menú</a>
+    <a href="../menu.php" class="btn btn-secondary mt-3">Volver al Menú</a>
 
 </body>
 </html>

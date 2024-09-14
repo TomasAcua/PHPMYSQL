@@ -1,7 +1,5 @@
 <?php
-include_once '../../control/AutoController.php';
-include_once '../../control/PersonaController.php';
-include_once '../../control/utils.php';
+include_once '../../configuracion.php';
 
 // Instanciar los controladores
 $autoController = new AutoController();

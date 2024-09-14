@@ -1,6 +1,5 @@
 <?php
-include_once '../../control/PersonaController.php';
-include_once '../../control/utils.php';
+include_once '../../configuracion.php';
 
 $datos = darDatosSubmitted();
 

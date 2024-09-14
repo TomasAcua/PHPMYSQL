@@ -1,6 +1,6 @@
 <?php
-include_once '../../control/AutoController.php';
-include_once '../../control/PersonaController.php';
+include_once '../../configuracion.php';
+
 
 // Verificar si se proporcionó un DNI válido
 $dni = $_GET['dni'] ?? null;

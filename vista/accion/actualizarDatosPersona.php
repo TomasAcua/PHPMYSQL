@@ -1,5 +1,5 @@
 <?php
-include_once '../../control/PersonaController.php';
+include_once '../../configuracion.php';
 
 ?>
 <!DOCTYPE html>

@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú Principal</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="../PHPMYSQL/vista/css/estilos.css">
 </head>
 <body>
+<div id="navbar"></div> <!-- Cargar la navegación dinámica -->
     <div class="container mt-5">
         <h1 class="text-center mb-4">Menú Principal</h1>
         <div class="row justify-content-center">
@@ -37,9 +38,12 @@
             </div>
             <!-- Ejercicio 7 - Buscar Persona -->
             <div class="col-md-4 mb-3">
-                <a href="vista/BuscarPersona.php" class="btn btn-primary w-100 btn-animate">Ejercicio 7 - Buscar Persona</a>
+                <a href="vista/BuscarPersona.php" class="btn btn-primary w-100 btn-animate">Ejercicio 7 - Buscar Personas</a>
             </div>
         </div>
     </div>
+     <!-- Incluir Bootstrap JS y archivos JS -->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/PHPMYSQL/vista/js/navegacion.js"></script>
 </body>
 </html>

@@ -1,6 +1,5 @@
 <?php
-include_once '../../control/AutoController.php';
-include_once '../../control/utils.php';  // Incluir utils.php
+include_once '../../configuracion.php';
 
 $datos = darDatosSubmitted();
 

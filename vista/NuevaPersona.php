@@ -38,9 +38,9 @@
                 <input type="date" class="form-control" id="fechaNac" name="fechaNac" required>
             </div>
             <button type="submit" class="btn btn-primary">Agregar Persona</button>
-            <a href="../menu.php" class="btn btn-secondary mt-3">Volver al Menú</a>
         </form>
     </div>
+    <a href="../menu.php" class="btn btn-secondary mt-3 " >Volver al Menú</a>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/PHPMYSQL/vista/js/validaciones.js"></script>

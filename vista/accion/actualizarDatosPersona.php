@@ -51,7 +51,7 @@ include_once '../../configuracion.php';
         </div>
 
         <div class="text-center">
-            <a href="../buscarPersona.html" class="btn btn-primary mt-3">Volver a buscar otra persona</a>
+            <a href="../buscarPersona.php" class="btn btn-primary mt-3">Volver a buscar otra persona</a>
             <a href="../../menu.php" class="btn btn-secondary mt-3">Volver al Menú</a>
         </div>
     </div>

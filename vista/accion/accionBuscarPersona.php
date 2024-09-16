@@ -51,10 +51,10 @@ if (isset($datos['dni']) && !empty($datos['dni'])) {
         <?php
     } else {
         echo "<p>No se encontró una persona con el DNI " . htmlspecialchars($dni) . ".</p>";
-        echo "<a href='BuscarPersona.html' class='btn btn-primary'>Volver a buscar</a>";
+        echo "<a href='BuscarPersona.php' class='btn btn-primary'>Volver a buscar</a>";
     }
 } else {
     echo "<p>Por favor ingrese un DNI válido.</p>";
-    echo "<a href='BuscarPersona.html' class='btn btn-primary'>Volver a buscar</a>";
+    echo "<a href='BuscarPersona.php' class='btn btn-primary'>Volver a buscar</a>";
 }
 ?>

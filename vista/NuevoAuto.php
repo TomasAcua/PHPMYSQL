@@ -6,11 +6,14 @@
     <title>Nuevo Auto</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/PHPMYSQL/vista/js/navegacion.js"></script>
 </head>
 <body>
+<?php include 'estructura/header.php'; ?>
+<div id="navbar"></div>
     <div class="container mt-5">
         <h1>Registrar Nuevo Auto</h1>
-        <form id="nuevoAutoForm" action="accion/accionNuevoAuto.php" method="POST">
+        <form id="formularioAuto" action="accion/accionNuevoAuto.php" method="POST">
             <div class="mb-3">
                 <label for="patente" class="form-label">Patente</label>
                 <input type="text" class="form-control" id="patente" name="patente" placeholder="Ingrese la patente" required>
@@ -31,16 +34,8 @@
         </form>
     </div>
     <a href="../menu.php" class="btn btn-secondary mt-3">Volver al Menú</a>
-
-    <script>
-     
-        $('#nuevoAutoForm').on('submit', function(e) {
-            var dni = $('#dniDuenio').val();
-            if (dni.length < 7 || dni.length > 10) {
-                alert('El DNI ingresado no es válido.');
-                e.preventDefault();
-            }
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/PHPMYSQL/vista/js/validaciones.js"></script>
+    <?php include 'estructura/footer.php'; ?>
 </body>
 </html>

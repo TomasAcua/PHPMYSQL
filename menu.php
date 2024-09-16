@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../PHPMYSQL/vista/css/estilos.css">
 </head>
 <body>
+<?php include 'vista/estructura/header.php'; ?>
 <div id="navbar"></div> <!-- Cargar la navegación dinámica -->
     <div class="container mt-5">
         <h1 class="text-center mb-4">Menú Principal</h1>
@@ -45,5 +46,6 @@
      <!-- Incluir Bootstrap JS y archivos JS -->
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/PHPMYSQL/vista/js/navegacion.js"></script>
+    <?php include 'vista/estructura/footer.php'; ?>
 </body>
 </html>

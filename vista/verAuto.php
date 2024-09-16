@@ -1,7 +1,5 @@
 <?php
-include_once __DIR__ . '/../control/AutoController.php';
-include_once __DIR__ . '/../control/PersonaController.php';
-include_once __DIR__ . '/../control/utils.php';
+include_once '../configuracion.php';
 
 // Instancia de los controladores
 $autoController = new AutoController();
@@ -18,8 +16,11 @@ $resultadoAutos = $autoController->obtenerAutos();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Autos</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <script src="/PHPMYSQL/vista/js/navegacion.js"></script>
 </head>
 <body>
+<?php include 'estructura/header.php'; ?>
+ <div id="navbar"></div>
     <div class="container mt-5">
         <h1 class="text-center mb-4">Listado de Autos</h1>
 
@@ -65,5 +66,6 @@ $resultadoAutos = $autoController->obtenerAutos();
     <div class="container text-center mt-4">
         <a href="../menu.php" class="btn btn-secondary">Volver al Menú</a>
     </div>
+    <?php include 'estructura/footer.php'; ?>
 </body>
 </html>

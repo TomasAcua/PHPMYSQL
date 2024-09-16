@@ -8,10 +8,13 @@ document.addEventListener("DOMContentLoaded", function () {
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="/PHPMYSQL/vista/BuscarPersona.html">Buscar Persona</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/PHPMYSQL/vista/BuscarPersona.php">Buscar Persona</a></li>
                     <li class="nav-item"><a class="nav-link" href="/PHPMYSQL/vista/NuevaPersona.php">Agregar Persona</a></li>
                     <li class="nav-item"><a class="nav-link" href="/PHPMYSQL/vista/BuscarAuto.php">Buscar Auto</a></li>
                     <li class="nav-item"><a class="nav-link" href="/PHPMYSQL/vista/NuevoAuto.php">Agregar Auto</a></li>
+                      <li class="nav-item"><a class="nav-link" href="/PHPMYSQL/vista/cambioDuenio.php">cambio Duenio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/PHPMYSQL/vista/listaPersonas.php">listar Personas</a></li>
+                          <li class="nav-item"><a class="nav-link" href="/PHPMYSQL/vista/verAuto.php">ver Auto</a></li>
                 </ul>
             </div>
         </nav>

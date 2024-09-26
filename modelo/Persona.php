@@ -47,22 +47,27 @@ class Persona {
     // Método para actualizar una persona
     public function actualizar($datos) {
         try {
+            // Incluimos la fecha de nacimiento en la consulta SQL
             $query = "UPDATE " . $this->table_name . " 
-                      SET Nombre=:Nombre, Apellido=:Apellido, Telefono=:Telefono, Domicilio=:Domicilio 
+                      SET Nombre=:Nombre, Apellido=:Apellido, Telefono=:Telefono, Domicilio=:Domicilio, fechaNac=:fechaNac 
                       WHERE NroDni=:NroDni";
-
+    
             $stmt = $this->conn->prepare($query);
+    
+            // Vinculamos todos los parámetros, incluyendo la fecha de nacimiento
             $stmt->bindParam(':NroDni', $datos['NroDni']);
             $stmt->bindParam(':Nombre', $datos['Nombre']);
             $stmt->bindParam(':Apellido', $datos['Apellido']);
             $stmt->bindParam(':Telefono', $datos['Telefono']);
             $stmt->bindParam(':Domicilio', $datos['Domicilio']);
-
-            return $stmt->execute();
+            $stmt->bindParam(':fechaNac', $datos['fechaNac']); // Nueva fecha de nacimiento
+    
+            return $stmt->execute(); // Ejecutamos la consulta
         } catch (PDOException $e) {
             return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
         }
     }
+    
     public function obtenerTodas() {
         try {
             $query = "SELECT * FROM " . $this->table_name;

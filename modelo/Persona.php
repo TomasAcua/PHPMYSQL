@@ -7,19 +7,22 @@ class Persona {
         $this->conn = $db;
     }
 
-    // Método para insertar una persona
     public function insertar($datos) {
         try {
-            $query = "INSERT INTO " . $this->table_name . " (NroDni, Nombre, Apellido, Telefono, Domicilio) 
-                      VALUES (:NroDni, :Nombre, :Apellido, :Telefono, :Domicilio)";
+            // Incluimos la fecha de nacimiento en la consulta SQL
+            $query = "INSERT INTO " . $this->table_name . " (NroDni, Nombre, Apellido, Telefono, Domicilio, fechaNac) 
+                      VALUES (:NroDni, :Nombre, :Apellido, :Telefono, :Domicilio, :fechaNac)";
     
             $stmt = $this->conn->prepare($query);
+    
+            // Vinculamos todos los parámetros, incluyendo la fecha de nacimiento
             $stmt->bindParam(':NroDni', $datos['NroDni']);
             $stmt->bindParam(':Nombre', $datos['Nombre']);
             $stmt->bindParam(':Apellido', $datos['Apellido']);
             $stmt->bindParam(':Telefono', $datos['Telefono']);
             $stmt->bindParam(':Domicilio', $datos['Domicilio']);
-
+            $stmt->bindParam(':fechaNac', $datos['fechaNac']); // Nueva fecha de nacimiento
+    
             if ($stmt->execute()) {
                 return ['success' => true];
             } else {
@@ -29,7 +32,7 @@ class Persona {
             return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
         }
     }
-
+    
     public function obtenerPorDni($dni) {
         try {
             $query = "SELECT * FROM " . $this->table_name . " WHERE NroDni = ?";
